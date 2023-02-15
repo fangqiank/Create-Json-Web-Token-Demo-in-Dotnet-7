@@ -7,7 +7,7 @@ using System.Text;
 
 namespace CreateJWT.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class AuthController : ControllerBase
     {
@@ -59,7 +59,9 @@ namespace CreateJWT.Controllers
                 Subject = new ClaimsIdentity(new[]
                 {
                     new Claim(ClaimTypes.Name, user.UserName),
-                    new Claim(ClaimTypes.Email, "zhangsan@mail.com")
+                    new Claim(ClaimTypes.Email, "zhangsan@mail.com"),
+                    new Claim(ClaimTypes.Role, "Admin"),
+                    new Claim(ClaimTypes.Role, "User"),
                 }),
                 Expires = DateTime.UtcNow.AddDays(1),
                 SigningCredentials = creds
